@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Coffee Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#login" id="login-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+
+        <section id="login" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <form id="login-form" method="post" action="register.php">
+                   
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="username" required>
+            
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="email id">
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password1" placeholder="password">
+                    
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="password2" placeholder="confirm password">
+                    
+                    <button type="submit">Login</button>
+                </form>
+                <div id="message"></div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+
+
+
+
+<style>
+header {
+    background: #6f4c3e;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #6f4c3e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+</style>
+
+
+
+
+<script>
+    document.getElementById('login-link').onclick = function() {
+    document.getElementById('login').style.display = 'block';
+};
+
+document.querySelector('.close').onclick = function() {
+    document.getElementById('login').style.display = 'none';
+};
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('login')) {
+        document.getElementById('login').style.display = 'none';
+    }
+};
+
+document.getElementById('login-form').onsubmit = function(e) {
+    e.preventDefault(); // Prevent form submission
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    // Basic validation
+    if (password !== confirmPassword) {
+        document.getElementById('message').innerText = 'Passwords do not match.';
+        return;
+    }
+
+    if (username && email && password) {
+        document.getElementById('message').innerText = 'Login successful!';
+    } else {
+        document.getElementById('message').innerText = 'Please fill all fields.';
+    }
+};
+
+</script>
